@@ -2,6 +2,7 @@ const fastify = require('fastify')({
     logger: true
 });
 
+const PORT = process.env.PORT || 3005;
 
 fastify.get('/test', function (request, reply) {
     reply.header("Access-Control-Allow-Origin", "*");
@@ -9,7 +10,7 @@ fastify.get('/test', function (request, reply) {
   })
   
   // Run the server!
-  fastify.listen(3005, function (err, address) {
+  fastify.listen(PORT, function (err, address) {
     if (err) {
       fastify.log.error(err)
       process.exit(1)
