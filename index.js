@@ -1,19 +1,16 @@
-const fastify = require('fastify')({
-    logger: true
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+
+const app = express();
+
+app.use(cors())
+const port = process.env.PORT || 3005;
+
+// sendFile will go here
+app.get('/test', function(req, res) {
+    res.send({ message: 'awesome!!' })
 });
 
-const PORT = process.env.PORT || 3005;
-
-fastify.get('/test', function (request, reply) {
-    reply.header("Access-Control-Allow-Origin", "*");
-    reply.send({ message: 'awesome!!' })
-  })
-  
-  // Run the server!
-  fastify.listen(PORT, function (err, address) {
-    if (err) {
-      fastify.log.error(err)
-      process.exit(1)
-    }
-    // Server is now listening on ${address}
-  })
+app.listen(port);
+console.log('Server started at http://localhost:' + port);
